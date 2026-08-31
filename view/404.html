@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 40px 20px;
+    }
+
+    .error-code {
+      font-size: 120px;
+      font-weight: 800;
+      color: #2563eb;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #6b7280;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .home-btn {
+      display: inline-block;
+      padding: 13px 25px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .home-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .search-btn {
+      display: inline-block;
+      margin-left: 10px;
+      padding: 12px 24px;
+      border: 2px solid #2563eb;
+      color: #2563eb;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .search-btn:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .error-code {
+        font-size: 80px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      .search-btn {
+        margin: 10px 0 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="error-code">404</div>
+
+    <h1>Page Not Found</h1>
+
+    <p>
+      Oops! The page you're looking for doesn't exist,
+      has been moved, or the URL may be incorrect.
+    </p>
+
+    <a href="/" class="home-btn">Go to Homepage</a>
+    <a href="javascript:history.back()" class="search-btn">Go Back</a>
+  </div>
+
+</body>
+</html>
