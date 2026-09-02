@@ -4,11 +4,13 @@ import sql from 'mssql'
 //const sql = sqldb();
 
 const config = {
-  server: "HIRAL",
-  database: "nodepractice",
+  server: "103.172.56.213",
+  user: "sa",
+  password: "Niy@ti@2312",
+  port:1433,
+  database: "practicedb",
 
   options: {
-    instanceName: "SQLEXPRESS",
     encrypt: false,
     trustServerCertificate: true
   }
