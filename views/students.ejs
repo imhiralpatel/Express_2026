@@ -10,6 +10,11 @@
         Data feching...
     </h1>
 
+    <a href="/ui/add" title="add new student">Add New Record</a>
+
+    <br>
+
+
     <table border="1">
         <tr>
             <td>
@@ -20,6 +25,9 @@
             </td>
             <td>
                 Email
+            </td>
+            <td>
+                Action
             </td>
         </tr>
         <% student.forEach(stud=>{ %>
@@ -32,6 +40,10 @@
             </td>
             <td>
                 <%= stud.semail %>
+            </td>
+            <td>
+                <a href="/ui/delete/<%= stud.ID %>">Delete</a>
+                <a href="/ui/edit/<%= stud.ID %>">Edit</a>
             </td>
         </tr>
         <% }) %>

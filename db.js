@@ -1,14 +1,17 @@
 import sql from 'mssql'
+import dotenv from "dotenv";
 
 //const sql = require("mssql");
 //const sql = sqldb();
 
+dotenv.config();
+
 const config = {
-  server: "103.172.56.213",
-  user: "sa",
-  password: "Niy@ti@2312",
-  port:1433,
-  database: "practicedb",
+  server: process.env.DB_SERVER,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port:Number(process.env.DB_PORT),
+  database: process.env.DB_NAME,
 
   options: {
     encrypt: false,
@@ -16,32 +19,15 @@ const config = {
   }
 };
 
-// const config = {
-//     server: "HIRAL",
-//     database: "YOUR_DATABASE",
+const poolPromise = new sql.ConnectionPool(config)
+  .connect()
+  .then((pool) => {
+    //console.log("Database connected successfully");
+    return pool;
+  })
+  .catch((error) => {
+    //console.error("Database connection failed:", error);
+    throw error;
+  });
 
-//     options: {
-//         instanceName: "SQLEXPRESS",
-//         encrypt: false,
-//         trustServerCertificate: true
-//     }
-// };
-
-async function connectDB() {
-  try {
-    await sql.connect(config);
-
-    console.log("SQL Server Connected Successfully!");
-
-    const result = await sql.query`
-      SELECT GETDATE() AS currentTime
-    `;
-
-    console.log(result.recordset);
-  } catch (error) {
-    console.error("Connection failed:");
-    console.error(error);
-  }
-}
-
-connectDB();
+export { sql, poolPromise };
