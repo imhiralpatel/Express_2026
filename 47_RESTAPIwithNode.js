@@ -60,13 +60,37 @@ app.get("/ui/delete/:id", async (req, resp) => {
 // UI - Patch (Update Data fetch)
 app.get("/ui/edit/:id", async(req, resp)=>{
     const { id } = req.params;
-    console.log(id);
+    //console.log(id);
     const pool = await poolPromise;
     const result = await pool.request().input("id", sql.Int, id).query("Select * from tblStudent WHERE ID=@id");
     const student = result.recordset;
-    resp.send({student})
-    //resp.render('Edit-Student', {student})
+    //resp.send({student})
+    resp.render('Edit-Student', {student})
 })
+
+// UI- PUT
+app.post("/ui/update/:id", async (req, resp)=>{
+    const { id } = req.params;
+    const { name, email, age } = req.body;
+    //console.log(id);
+    const pool = await poolPromise;
+    const result = await pool.request()
+    .input("id", sql.Int, id)
+    .input("name", sql.VarChar, name)
+    .input("email", sql.VarChar, email)
+    .input("age", sql.Int, age)
+    .query("Update tblStudent SET sname=@name,sage=@age,semail=@email WHERE ID=@id");
+    
+    if(result){
+        resp.send("Data Updated...")
+    }
+    else
+    {
+        resp.send("data not updated...")
+    }
+})
+
+
 
 // API - Data
 app.get("/stud/api", async (req, resp) => {
@@ -117,5 +141,41 @@ app.delete("/stud/delete/:id", async (req, resp) => {
     }
 })
 
+// API - Patch (Update Data fetch)
+app.get("/stud/edit/:id", async(req, resp)=>{
+    const { id } = req.params;
+    //console.log(id);
+    const pool = await poolPromise;
+    const result = await pool.request().input("id", sql.Int, id).query("Select * from tblStudent WHERE ID=@id");
+    const student = result.recordset;
+    if (result) {
+        resp.send({message : "Data fetching...", success : true, data : student})
+    }
+    else{
+        resp.send({message : "Data not fetching...", success : false})
+    }
+
+})
+
+// API- PUT
+app.put("/stud/update/:id", async (req, resp)=>{
+    const { id } = req.params;
+    const { name, email, age } = req.body;
+    //console.log(id);
+    const pool = await poolPromise;
+    const result = await pool.request()
+    .input("id", sql.Int, id)
+    .input("name", sql.VarChar, name)
+    .input("email", sql.VarChar, email)
+    .input("age", sql.Int, age)
+    .query("Update tblStudent SET sname=@name,sage=@age,semail=@email WHERE ID=@id");
+    
+    if (result) {
+        resp.send({message : "Data updated...", success : true, data : req.body})
+    }
+    else{
+        resp.send({message : "Data not updated...", success : false})
+    }
+})
 
 app.listen(3800);

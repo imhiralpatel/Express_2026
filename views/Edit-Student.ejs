@@ -6,14 +6,14 @@
     <title>Edit Student</title>
 </head>
 <body>
-    <form action="" method="post">
-            <input type="text" placeholder="Enter Name" name="<%= student.sname %>" >
+    <form action="/ui/update/<%= student[0].ID %>" method="post">
+            <input type="text" placeholder="Enter Name" name="name" value="<%= student[0].sname %>" />
             <br>
             <br>
-            <input type="text" placeholder="Enter Age" name="<%= student.sage %>" >
+            <input type="text" placeholder="Enter Age" name="age" value="<%= student[0].sage %>" />
             <br>
             <br>
-            <input type="text" placeholder="Enter Email" name="<%= student.semail %>" >
+            <input type="text" placeholder="Enter Email" name="email" value="<%= student[0].semail %>" />
             <br>
             <br>
             <button>Update Student</button>
