@@ -17,9 +17,17 @@ app.post("/profile", (req, resp)=>{
 })
 
 app.get("/", (req, resp)=>{
-    const cookieData = req.get('cookie')
-    cookieData = cookieData.split(";")
-    cookieData = cookieData[1].split("=")
+    let cookieData = req.get('cookie')
+    
+    if (!cookieData) {
+        return res.send("No cookies found");
+    }
+
+    //cookieData = cookieData.split(";")
+    cookieData = cookieData.split("=")
+
+    //console.log(cookieData);
+    
     resp.render('home', {name:cookieData[1]})
 })
 

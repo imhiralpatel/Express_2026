@@ -1,6 +1,8 @@
 import express from 'express'
 import multer from 'multer';
 
+// install package => npm i multer
+
 const app = express();
 
 const storage=multer.diskStorage({
